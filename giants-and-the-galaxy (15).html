@@ -1093,6 +1093,148 @@ body {
   letter-spacing: 0.1em;
 }
 
+/* ─── WILDLIFE SPOTTER PLATE ─── */
+.spotter-section {
+  margin: 0 0 1.5rem 0;
+  background: linear-gradient(135deg, rgba(181,136,42,0.06) 0%, rgba(58,94,58,0.06) 100%);
+  border: 1px solid var(--gold-pale);
+  border-radius: 12px;
+  padding: 1rem 1.25rem 1.25rem;
+  overflow: hidden;
+}
+
+.spotter-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.spotter-paw { font-size: 1.1rem; line-height: 1; }
+
+.spotter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--forest);
+  flex: 1;
+}
+
+.spotter-subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.spotter-plate {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--gold-pale);
+  background: var(--cream-warm);
+  margin-bottom: 0.85rem;
+  line-height: 0;
+}
+
+.spotter-plate img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.spotter-caption {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: -0.25rem 0 0.85rem;
+}
+
+.spotter-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow 0.2s;
+  border: 1px solid rgba(181,136,42,0.12);
+}
+
+.spotter-card:last-child { margin-bottom: 0; }
+.spotter-card:active { box-shadow: 0 0 0 2px var(--gold-pale); }
+.spotter-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+
+.spotter-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.spotter-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--forest-deep);
+}
+
+.spotter-latin {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.spotter-where {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+.spotter-tips {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--gold-pale);
+  display: none;
+}
+
+.spotter-card.revealed .spotter-tips { display: block; }
+
+.spotter-card.revealed {
+  background: rgba(58,94,58,0.04);
+  border-color: rgba(58,94,58,0.15);
+}
+
+.spotter-tip {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  color: var(--forest-deep);
+  line-height: 1.5;
+}
+
+.spotter-tip:last-child { margin-bottom: 0; }
+
+.spotter-tip-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  width: 64px;
+  padding-top: 0.18rem;
+}
+
 /* ─── INSURANCE SECTION ─── */
 .ins-toggle {
   display: flex;
@@ -1508,6 +1650,60 @@ body {
       <p class="phase-number">Phase 02</p>
       <h2 class="phase-title">Sun, Surf &amp; Sea Caves</h2>
       <p class="phase-dates">July 7 – 9 · Malibu to Pismo Beach</p>
+    </div>
+  </div>
+
+  <div class="spotter-section">
+    <div class="spotter-header">
+      <span class="spotter-paw">🐾</span>
+      <span class="spotter-title">Iona's Wildlife Spotter — The Coast Leg</span>
+      <span class="spotter-subtitle">Tap a card</span>
+    </div>
+    <div class="spotter-plate">
+      <img src="data:image/jpeg;base64,WILDLIFE_PLATE_BASE64_PLACEHOLDER" alt="Wildlife of the California Central Coast — illustrated plate showing a Brown Pelican in flight, a Southern Sea Otter floating in kelp, and Northern Elephant Seals on the shore.">
+    </div>
+    <p class="spotter-caption">Plate 14 · Wildlife of the California Central Coast</p>
+
+    <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+      <div class="spotter-card-head">
+        <span class="spotter-name">Brown Pelican</span>
+        <span class="spotter-latin">Pelecanus occidentalis</span>
+        <span class="spotter-where">Pismo · Big Sur</span>
+      </div>
+      <div class="spotter-tips">
+        <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Cruising in single-file lines just above the waves off Pismo Pier and along the Big Sur cliffs.</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">When</span><span>All day, but most dramatic at dusk when they plunge-dive head-first for fish — wings folded back, smack into the water.</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">Spot by</span><span>A 2-metre wingspan and a huge pouch under the beak. They glide more than they flap.</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">Tally</span><span>Easy — you'll see lots. Count to 10 and stop.</span></div>
+      </div>
+    </div>
+
+    <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+      <div class="spotter-card-head">
+        <span class="spotter-name">Southern Sea Otter</span>
+        <span class="spotter-latin">Enhydra lutris nereis</span>
+        <span class="spotter-where">Pismo kelp · Big Sur coves</span>
+      </div>
+      <div class="spotter-tips">
+        <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>The kelp beds just off Pismo Pier — bring binoculars. Also bobbing in the small coves on the Big Sur drive.</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">When</span><span>Mornings are best when the sea is calmer. Listen for the <em>clink</em> of a rock cracking a shell on their chest.</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">Spot by</span><span>A furry brown blob floating on its back, often wrapped in kelp to stop drifting. Sometimes in groups (called a "raft").</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">Tally</span><span>Tricky from the beach — you've got to look. One spot = a win.</span></div>
+      </div>
+    </div>
+
+    <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+      <div class="spotter-card-head">
+        <span class="spotter-name">Northern Elephant Seal</span>
+        <span class="spotter-latin">Mirounga angustirostris</span>
+        <span class="spotter-where">Piedras Blancas · Day 9</span>
+      </div>
+      <div class="spotter-tips">
+        <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>The Piedras Blancas Rookery boardwalk — a pull-off on Highway 1 between Pismo and Big Sur. Free, no booking.</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">When</span><span>July = juveniles and moulting adults flopped on the sand. Look (and listen) for them throwing sand on their backs to stay cool.</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">Spot by</span><span>Enormous (males up to 2,300 kg!), wrinkly, and very loud. Males have the trunk-like nose — most July seals are smaller juveniles though.</span></div>
+        <div class="spotter-tip"><span class="spotter-tip-label">Tally</span><span>Guaranteed. The question is how many — hundreds is normal.</span></div>
+      </div>
     </div>
   </div>
 
