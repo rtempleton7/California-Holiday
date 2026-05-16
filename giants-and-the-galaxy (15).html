@@ -1452,6 +1452,98 @@ body {
   border-radius: 8px;
 }
 
+
+/* ─── Manifest transfer card ─── */
+.manifest-transfer {
+  background: linear-gradient(135deg, rgba(58,94,58,0.04), rgba(181,136,42,0.05));
+  border: 1px solid var(--gold-pale);
+  border-radius: 10px;
+  padding: 0.9rem 1rem 0.7rem;
+  margin: 0.4rem 0;
+}
+.transfer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+  flex-wrap: wrap;
+}
+.transfer-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--forest);
+}
+.transfer-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.transfer-steps {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 0 0 0.4rem 0;
+}
+.transfer-steps li {
+  counter-increment: step;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.83rem;
+  color: var(--ink);
+  padding: 0.32rem 0 0.32rem 1.85rem;
+  position: relative;
+  line-height: 1.5;
+}
+.transfer-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.42rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--white);
+  background: var(--gold);
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.transfer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.4rem 0 0.2rem;
+  border-top: 1px dashed var(--gold-pale);
+  font-size: 0.78rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.transfer-meta + .transfer-meta { border-top: none; padding-top: 0.15rem; }
+.transfer-meta-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.transfer-meta-val {
+  font-family: 'Outfit', sans-serif;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 0.78rem;
+}
+.transfer-meta-val a {
+  color: var(--forest);
+  text-decoration: none;
+  margin-left: 0.4rem;
+}
+.transfer-meta-val a:hover { text-decoration: underline; }
+
 /* ─── RESPONSIVE ─── */
 @media (min-width: 768px) {
   .hero { padding: 4rem 3rem 4rem; }
@@ -1626,7 +1718,7 @@ body {
     <div class="climate-card">
       <div class="climate-zone">
         <div class="climate-zone-name">Coast & Marine Layer</div>
-        <span class="climate-temp">12–18°C</span>
+        <span class="climate-temp">12–22°C</span>
       </div>
       <div class="climate-desc">Monterey, Pismo, Big Sur. Dense, damp morning fog that often doesn't burn off until lunchtime. The beach doesn't mean warm.</div>
       <div class="climate-pack">Pack → Fleece mid-layers, windbreakers, denim. Do not pack exclusively for summer.</div>
@@ -1642,7 +1734,7 @@ body {
     <div class="climate-card">
       <div class="climate-zone">
         <div class="climate-zone-name">Granite & High Desert</div>
-        <span class="climate-temp" style="background:var(--forest-deep);">26°C Day / 7°C Night</span>
+        <span class="climate-temp" style="background:var(--forest-deep);">28–32°C Day / 10–14°C Night</span>
       </div>
       <div class="climate-desc">Yosemite, Sequoia, Rankin Ranch. Extreme day-to-night temperature swings. T-shirt at noon, needing a thick jumper by 8 PM.</div>
       <div class="climate-pack">Pack → Layering system. T-shirts + thick fleece/hoodie. Long trousers for evening fire pits. Iona will need a warm hat for stargazing. For ranch riding: jeans, boots with heels, long-sleeve sun shirt, hat with chin strap.</div>
@@ -1661,6 +1753,28 @@ body {
       <div class="flight-route">MAN → LHR T5 <span class="time">08:55 – 10:10</span></div>
       <span class="flight-ref"><a href="https://mail.google.com/mail/u/0/#search/BA1359+ZSOJHN" target="_blank">BA: ZSOJHN ✉</a></span>
     </div>
+
+    <div class="manifest-transfer">
+      <div class="transfer-header">
+        <span class="transfer-label">Heathrow Connection — T5 → T3</span>
+        <span class="transfer-time">4h 20m at LHR · Landside transfer</span>
+      </div>
+      <ol class="transfer-steps">
+        <li><strong>Bags + customs</strong> at T5 (allow 30 min — different ticket from Virgin so bags don't through-check)</li>
+        <li><strong>Heathrow Express</strong> T5 → T2/3 (4 min, free between terminals; departs every 15 min)</li>
+        <li><strong>Virgin Atlantic check-in</strong> at T3 zones D–F · bag drop · security</li>
+        <li><strong>No1 Lounge T3</strong> until VS to LAX boarding (~13:50)</li>
+      </ol>
+      <div class="transfer-meta">
+        <span class="transfer-meta-label">No1 Lounge ref</span>
+        <span class="transfer-meta-val">N1L-SH891255 · <a href="https://mail.google.com/mail/u/0/#search/No1+Lounges+Booking+Confirmation" target="_blank">Open in Gmail ✉</a></span>
+      </div>
+      <div class="transfer-meta">
+        <span class="transfer-meta-label">Virgin Flying Club</span>
+        <span class="transfer-meta-val">1091048031</span>
+      </div>
+    </div>
+
     <div class="flight-card">
       <span class="flight-code">VS</span>
       <div class="flight-route">LHR → LAX <span class="time">14:30 – 17:45</span></div>
@@ -1672,7 +1786,7 @@ body {
     <p class="manifest-group-label">Return — Sunday 20 / Monday 21 July</p>
     <div class="flight-card">
       <span class="flight-code">VS0024</span>
-      <div class="flight-route">LAX → LHR <span class="time">23:15 – 17:35+1</span></div>
+      <div class="flight-route">LAX → LHR <span class="time">20:35 – 14:30+1</span></div>
       <span class="flight-ref"><a href="https://mail.google.com/mail/u/0/#search/Virgin+Atlantic+VS0024+EHTOY5" target="_blank">VS: EHTOY5 ✉</a></span>
     </div>
     <div class="flight-card">
@@ -2983,7 +3097,7 @@ body {
         <div class="day-date"><div class="day-date-num">20</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
           <div class="day-label">Going Home</div>
-          <div class="day-tag">Slow Morning · Dinner · Night Flight</div>
+          <div class="day-tag">DCA Rope Drop · Drive to LAX · Evening Flight</div>
         </div>
         <svg class="day-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
@@ -2991,29 +3105,44 @@ body {
         <div class="day-content">
           <div class="timeline">
             <div class="tl-item">
-              <div class="tl-time">Morning</div>
-              <div class="tl-title">No Rush</div>
-              <div class="tl-desc">The flight isn't until 23:15. Late checkout, one last swim, pack slowly. Let the trip breathe its last day.</div>
+              <div class="tl-time">07:30</div>
+              <div class="tl-title">Pre-pack & Breakfast</div>
+              <div class="tl-desc">Pack everything tonight (Day 19) so morning is just last-second clothes and toiletries. Light hotel breakfast, then a 15-min walk to the parks.</div>
             </div>
             <div class="tl-item highlight">
-              <div class="tl-time">Evening</div>
-              <div class="tl-title">Last Supper — Sit-Down Dinner</div>
-              <div class="tl-desc">A quiet, proper meal together in Anaheim. Not fast food, not rushed. This is the closing ritual — we mark the end of the trip before heading to the airport.</div>
+              <div class="tl-time">08:30 — 12:30</div>
+              <div class="tl-title"><span class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg></span>Disney California Adventure — Rope Drop</div>
+              <div class="tl-desc">Four hours, four big hits — Iona's day to ride. <strong>Radiator Springs Racers</strong> first thing — grab a Lightning Lane the moment the app lets you, or join the rope-drop run for it. Then <strong>Soarin' Around the World</strong>, <strong>Web Slingers</strong> in Avengers Campus, and if she clears the 122 cm bar the <strong>Incredicoaster</strong>. <strong>Goofy's Sky School</strong>, <strong>Grizzly River Run</strong> and <strong>Mater's Junkyard Jamboree</strong> are great fall-back thrills if her height runs short. Skip any standby over 40 min.</div>
             </div>
             <div class="tl-item">
-              <div class="tl-time">~21:00</div>
-              <div class="tl-title">Drive to LAX</div>
-              <div class="tl-desc">About 45 mins. Drop the rental car. The late flight is a gift — use it, don't sprint.</div>
+              <div class="tl-time">12:30</div>
+              <div class="tl-title">Quick Lunch — Downtown Disney</div>
+              <div class="tl-desc">Tortilla Jo's tacos or Wetzel's Pretzels on the move. A sit-down meal would eat the buffer.</div>
             </div>
             <div class="tl-item">
-              <div class="tl-time">23:15</div>
+              <div class="tl-time">13:15</div>
+              <div class="tl-title">Bell Desk + Road Prep</div>
+              <div class="tl-desc">Pre-checkout in the morning, leave bags at the bell desk. Bags into the car, quick CVS run on Harbor for water and road snacks.</div>
+            </div>
+            <div class="tl-item highlight">
+              <div class="tl-time">14:30</div>
+              <div class="tl-title"><span class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13l2-5h14l2 5M5 13v5h14v-5M7 18v2M17 18v2"/><circle cx="7.5" cy="15.5" r="1"/><circle cx="16.5" cy="15.5" r="1"/></svg></span>Drive to LAX</div>
+              <div class="tl-desc">~35 miles. PM rush is brutal between 15:00 and 19:00 — leaving by 14:30 gives a 90-min drive buffer. Drop the rental at the airport return centre, take the shuttle to T3.</div>
+            </div>
+            <div class="tl-item highlight">
+              <div class="tl-time">17:30</div>
+              <div class="tl-title">LAX T3 — Goodbye-California Dinner</div>
+              <div class="tl-desc">Check in with Virgin, bag drop, security. Once airside, the proper sit-down meal — there's plenty of food and Iona can watch planes through the wall of windows. <strong>This is the closing ritual.</strong></div>
+            </div>
+            <div class="tl-item highlight">
+              <div class="tl-time">20:35</div>
               <div class="tl-title">VS0024 — LAX → LHR</div>
-              <div class="tl-desc">Overnight flight. Land 17:35 on the 21st. Connect to BA1374 at 21:35 — home to Manchester by 22:45. Iona asleep in the car by Stockport.</div>
+              <div class="tl-desc">Wheels up. Land Heathrow ~14:30 on the 21st. Onward to BA1374 at 21:35 — home to Manchester by 22:45. Iona asleep in the car by Stockport.</div>
             </div>
           </div>
           <div class="intel-card">
             <div class="intel-label">The Logic</div>
-            <p>The late flight is deliberate. It gives us a full, unhurried final day. <strong>Don't fill it — let it empty out.</strong></p>
+            <p>The morning park session is short by design — pre-pack, pre-checkout, hit DCA at rope drop, and you'll squeeze four hours of properly good rides before heading out. <strong>Don't drift past 14:30.</strong> LA's afternoon traffic owns the road from 15:00 onward.</p>
           </div>
         </div>
       </div>
