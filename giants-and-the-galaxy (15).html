@@ -1235,6 +1235,97 @@ body {
   padding-top: 0.18rem;
 }
 
+
+/* ─── Spotter card additions: stamp, rating, tick ─── */
+.spotter-card { position: relative; overflow: hidden; }
+
+.spotter-stamp {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--red-subtle);
+  border: 2px solid var(--red-subtle);
+  padding: 0.18rem 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  pointer-events: none;
+  opacity: 0;
+  transform: rotate(-8deg) scale(0.7);
+  transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+  background: rgba(247, 242, 234, 0.6);
+}
+
+.spotter-card.spotted { background: rgba(58,94,58,0.07); border-color: rgba(58,94,58,0.28); }
+.spotter-card.spotted .spotter-stamp { opacity: 0.85; transform: rotate(-8deg) scale(1); }
+
+.spotter-name-block {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.spotter-meta {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.28rem;
+  flex-shrink: 0;
+}
+
+.spotter-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.spotter-rating {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.spotter-rating[data-rating="unicorn"] { color: var(--red-subtle); }
+
+.spotter-tick {
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--gold-pale);
+  background: var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.spotter-tick svg { width: 14px; height: 14px; }
+.spotter-tick:hover { border-color: var(--gold); }
+.spotter-tick:active { transform: scale(0.92); }
+.spotter-card.spotted .spotter-tick {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--white);
+}
+
+/* override the existing spotter-where margin since it now sits inside spotter-meta */
+.spotter-meta .spotter-where { margin-left: 0; }
+
 /* ─── INSURANCE SECTION ─── */
 .ins-toggle {
   display: flex;
@@ -1742,11 +1833,20 @@ body {
             </div>
             <p class="spotter-caption">Plate 14 · Wildlife of the California Central Coast · Tap to enlarge</p>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Pelecanus occidentalis" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Brown Pelican</span>
-                <span class="spotter-latin">Pelecanus occidentalis</span>
-                <span class="spotter-where">Pismo · Big Sur</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Brown Pelican</span>
+                  <span class="spotter-latin">Pelecanus occidentalis</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Pismo · Big Sur</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Cruising in single-file lines just above the waves off Pismo Pier and along the Big Sur cliffs.</span></div>
@@ -1756,11 +1856,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Enhydra lutris nereis" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Southern Sea Otter</span>
-                <span class="spotter-latin">Enhydra lutris nereis</span>
-                <span class="spotter-where">Pismo kelp · Big Sur coves</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Southern Sea Otter</span>
+                  <span class="spotter-latin">Enhydra lutris nereis</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Pismo kelp · Big Sur coves</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="tricky">🐾🐾 Tricky</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>The kelp beds just off Pismo Pier — bring binoculars. Also bobbing in the small coves on the Big Sur drive.</span></div>
@@ -1770,11 +1879,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Mirounga angustirostris" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Northern Elephant Seal</span>
-                <span class="spotter-latin">Mirounga angustirostris</span>
-                <span class="spotter-where">Piedras Blancas · Jul 9</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Northern Elephant Seal</span>
+                  <span class="spotter-latin">Mirounga angustirostris</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Piedras Blancas · Jul 9</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>The Piedras Blancas Rookery boardwalk — a pull-off on Highway 1 between Pismo and Big Sur. Free, no booking.</span></div>
@@ -1993,11 +2111,20 @@ body {
             </div>
             <p class="spotter-caption">Plate 15 · Wildlife of Monterey Bay · Tap to enlarge</p>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Chrysaora fuscescens" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Pacific Sea Nettle</span>
-                <span class="spotter-latin">Chrysaora fuscescens</span>
-                <span class="spotter-where">Aquarium · Jul 10</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Pacific Sea Nettle</span>
+                  <span class="spotter-latin">Chrysaora fuscescens</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Aquarium · Jul 10</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>The Jellies gallery at Monterey Bay Aquarium — backlit blue tanks where they drift in slow motion. The aquarium was the first place in the world to figure out how to breed them.</span></div>
@@ -2007,11 +2134,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Zalophus californianus" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">California Sea Lion</span>
-                <span class="spotter-latin">Zalophus californianus</span>
-                <span class="spotter-where">Wharf · Breakwater</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">California Sea Lion</span>
+                  <span class="spotter-latin">Zalophus californianus</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Wharf · Breakwater</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Hauled out on the rocks of the Coast Guard breakwater right next to Fisherman's Wharf, and lounging under the wharf itself. You'll hear them long before you see them.</span></div>
@@ -2021,11 +2157,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Megaptera novaeangliae" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Humpback Whale</span>
-                <span class="spotter-latin">Megaptera novaeangliae</span>
-                <span class="spotter-where">Whale Watch · 13:00</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Humpback Whale</span>
+                  <span class="spotter-latin">Megaptera novaeangliae</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Whale Watch · 13:00</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="tricky">🐾🐾 Tricky</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Out on the Blue Ocean Whale Watch from Moss Landing. They feed right above the Monterey Submarine Canyon — as deep as the Grand Canyon — which brings huge fish shoals close to the surface.</span></div>
@@ -2202,11 +2347,20 @@ body {
             </div>
             <p class="spotter-caption">Plate 16 · Wildlife of Yosemite Valley · Tap to enlarge</p>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Ursus americanus" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Black Bear</span>
-                <span class="spotter-latin">Ursus americanus</span>
-                <span class="spotter-where">Meadows · Mariposa Grove</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Black Bear</span>
+                  <span class="spotter-latin">Ursus americanus</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Meadows · Mariposa Grove</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="unicorn">🐾🐾🐾 Unicorn</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Valley meadows and the edges of forest trails. Fun fact: Yosemite's "black" bears are often actually blonde, cinnamon, or brown — California's last real grizzly was shot in 1922, so these are the only bears here now.</span></div>
@@ -2216,11 +2370,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Odocoileus hemionus" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Mule Deer</span>
-                <span class="spotter-latin">Odocoileus hemionus</span>
-                <span class="spotter-where">Cook's & Stoneman Meadows</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Mule Deer</span>
+                  <span class="spotter-latin">Odocoileus hemionus</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Cook's & Stoneman Meadows</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Right in the open meadows of the valley floor — Cook's Meadow under Yosemite Falls, Stoneman Meadow near Curry Village. They're completely used to people and barely look up.</span></div>
@@ -2230,11 +2393,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Cyanocitta stelleri" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Steller's Jay</span>
-                <span class="spotter-latin">Cyanocitta stelleri</span>
-                <span class="spotter-where">Campgrounds · Picnic tables</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Steller's Jay</span>
+                  <span class="spotter-latin">Cyanocitta stelleri</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Campgrounds · Picnic tables</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Anywhere there are crumbs — picnic areas, the Lodge patio, Tenaya outdoor tables. They're the valley's most photogenic bandits.</span></div>
@@ -2478,11 +2650,20 @@ body {
             </div>
             <p class="spotter-caption">Plate 17 · Wildlife of the California Oak Savannah · Tap to enlarge</p>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Buteo jamaicensis" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Red-tailed Hawk</span>
-                <span class="spotter-latin">Buteo jamaicensis</span>
-                <span class="spotter-where">Soaring overhead · Fence posts</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Red-tailed Hawk</span>
+                  <span class="spotter-latin">Buteo jamaicensis</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Soaring overhead · Fence posts</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Circling on thermals above the basin, or sitting hunched on a fence post or solitary oak. They love the open grassland because they can see every ground squirrel that twitches.</span></div>
@@ -2492,11 +2673,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Bubo virginianus" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Great Horned Owl</span>
-                <span class="spotter-latin">Bubo virginianus</span>
-                <span class="spotter-where">Oaks at dusk · Cabin porches</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Great Horned Owl</span>
+                  <span class="spotter-latin">Bubo virginianus</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Oaks at dusk · Cabin porches</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="tricky">🐾🐾 Tricky</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Roosting deep in the valley oaks during the day; hunting from low branches at dusk. The big oaks around the ranch cabins are prime real estate.</span></div>
@@ -2506,11 +2696,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Otospermophilus beecheyi" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">California Ground Squirrel</span>
-                <span class="spotter-latin">Otospermophilus beecheyi</span>
-                <span class="spotter-where">Burrows along the basin</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">California Ground Squirrel</span>
+                  <span class="spotter-latin">Otospermophilus beecheyi</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Burrows along the basin</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Standing bolt upright like little sentries beside their burrow entrances, all over the basin. They live in underground colonies sometimes hundreds strong.</span></div>
@@ -2656,11 +2855,20 @@ body {
             </div>
             <p class="spotter-caption">Plate 18 · Wildlife of the Mojave Desert · Tap to enlarge</p>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Geococcyx californianus" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Greater Roadrunner</span>
-                <span class="spotter-latin">Geococcyx californianus</span>
-                <span class="spotter-where">Roadside scrub</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Greater Roadrunner</span>
+                  <span class="spotter-latin">Geococcyx californianus</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Roadside scrub</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="tricky">🐾🐾 Tricky</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Sprinting across the highway shoulder and darting between creosote bushes. They prefer running to flying — they can hit 30 km/h on those long legs.</span></div>
@@ -2670,11 +2878,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Gopherus agassizii" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Desert Tortoise</span>
-                <span class="spotter-latin">Gopherus agassizii</span>
-                <span class="spotter-where">Burrow entrances · Cool sand</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Desert Tortoise</span>
+                  <span class="spotter-latin">Gopherus agassizii</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Burrow entrances · Cool sand</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="unicorn">🐾🐾🐾 Unicorn</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>Mojave is their home turf. They spend 95% of their lives underground in burrows they dig themselves, only coming out in mild weather. Look near shaded burrow entrances under bushes.</span></div>
@@ -2684,11 +2901,20 @@ body {
               </div>
             </div>
 
-            <div class="spotter-card" onclick="this.classList.toggle('revealed')">
+            <div class="spotter-card" data-spotter-id="Lepus californicus" onclick="this.classList.toggle('revealed')">
+              <div class="spotter-stamp" aria-hidden="true">Spotted</div>
               <div class="spotter-card-head">
-                <span class="spotter-name">Black-tailed Jackrabbit</span>
-                <span class="spotter-latin">Lepus californicus</span>
-                <span class="spotter-where">Anywhere with scrub</span>
+                <div class="spotter-name-block">
+                  <span class="spotter-name">Black-tailed Jackrabbit</span>
+                  <span class="spotter-latin">Lepus californicus</span>
+                </div>
+                <div class="spotter-meta">
+                  <span class="spotter-where">Anywhere with scrub</span>
+                  <div class="spotter-meta-row">
+                    <span class="spotter-rating" data-rating="easy">🐾 Easy</span>
+                    <button type="button" class="spotter-tick" onclick="toggleSpotted(event, this)" aria-label="Mark spotted" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+                  </div>
+                </div>
               </div>
               <div class="spotter-tips">
                 <div class="spotter-tip"><span class="spotter-tip-label">Where</span><span>All over the open desert and the verges of Highway 14. Often sitting motionless in the shade of a bush — easy to drive straight past one and never notice.</span></div>
@@ -2927,6 +3153,43 @@ function closeLightbox() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeLightbox();
 });
+
+// Wildlife spotter — tally / spotted state
+const SPOTTER_KEY = 'wildlife-spotter-spotted';
+function getSpotted() {
+  try { return JSON.parse(localStorage.getItem(SPOTTER_KEY) || '[]'); }
+  catch (e) { return []; }
+}
+function setSpotted(list) {
+  try { localStorage.setItem(SPOTTER_KEY, JSON.stringify(list)); } catch (e) {}
+}
+function toggleSpotted(event, btn) {
+  event.stopPropagation();
+  const card = btn.closest('.spotter-card');
+  if (!card) return;
+  const id = card.dataset.spotterId;
+  card.classList.toggle('spotted');
+  const isSpotted = card.classList.contains('spotted');
+  btn.setAttribute('aria-pressed', isSpotted ? 'true' : 'false');
+  const list = new Set(getSpotted());
+  if (isSpotted) list.add(id); else list.delete(id);
+  setSpotted([...list]);
+}
+function restoreSpotted() {
+  const list = new Set(getSpotted());
+  document.querySelectorAll('.spotter-card[data-spotter-id]').forEach(card => {
+    if (list.has(card.dataset.spotterId)) {
+      card.classList.add('spotted');
+      const btn = card.querySelector('.spotter-tick');
+      if (btn) btn.setAttribute('aria-pressed', 'true');
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', restoreSpotted);
+} else {
+  restoreSpotted();
+}
 </script>
 
 <!-- Lightbox modal -->
