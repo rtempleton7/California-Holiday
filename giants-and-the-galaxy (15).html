@@ -1557,6 +1557,198 @@ body {
 }
 .transfer-meta-val a:hover { text-decoration: underline; }
 
+
+/* ─── Trip countdown chip ─── */
+.trip-countdown {
+  display: none;
+  margin-top: 1.25rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  border: 1px solid rgba(212, 169, 74, 0.5);
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  align-self: flex-start;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(4px);
+}
+.trip-countdown.visible { display: inline-block; }
+
+/* ─── Field Journal cards (per phase) ─── */
+.journal-card {
+  background: var(--cream-warm);
+  border: 1px dashed rgba(181, 136, 42, 0.5);
+  border-radius: 6px;
+  padding: 1rem 1.25rem 1.1rem;
+  margin: 1.25rem 1.5rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.journal-card::before {
+  content: '';
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  right: 0.4rem;
+  bottom: 0.4rem;
+  border: 1px solid rgba(181, 136, 42, 0.18);
+  border-radius: 4px;
+  pointer-events: none;
+}
+.journal-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.55rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  position: relative;
+}
+.journal-label { color: var(--gold); }
+.journal-note {
+  color: var(--ink-faint);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-style: italic;
+  font-size: 0.62rem;
+}
+.journal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--forest);
+  margin: 0 0 0.6rem;
+  line-height: 1.2;
+  position: relative;
+}
+.journal-prompts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.journal-prompts li {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--ink);
+  padding: 0.32rem 0 0.32rem 1.35rem;
+  position: relative;
+  line-height: 1.5;
+}
+.journal-prompts li::before {
+  content: '·';
+  position: absolute;
+  left: 0.45rem;
+  top: -0.15rem;
+  font-size: 1.4rem;
+  color: var(--gold);
+  font-style: normal;
+}
+
+/* ─── Expedition Stats footer ─── */
+.expedition-stats {
+  max-width: 720px;
+  margin: 2rem auto 3rem;
+  padding: 2rem 1.5rem;
+  background: var(--cream-warm);
+  border: 1px solid var(--gold-pale);
+  border-radius: 12px;
+}
+.stats-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0.45rem;
+}
+.stats-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--forest);
+  margin: 0;
+  text-align: center;
+  line-height: 1.15;
+}
+.stats-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  text-align: center;
+  margin: 0.4rem 0 1.5rem;
+  font-style: italic;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 600px) {
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--gold-pale);
+  border-radius: 8px;
+  padding: 0.85rem 0.7rem;
+  text-align: center;
+}
+.stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--forest);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.stats-wonder {
+  border-top: 1px dashed var(--gold-pale);
+  padding-top: 1.25rem;
+}
+.wonder-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  padding: 0.45rem 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 1.5;
+  flex-wrap: wrap;
+}
+.wonder-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  flex-shrink: 0;
+  min-width: 6.5rem;
+}
+.wonder-text {
+  flex: 1;
+  font-size: 0.85rem;
+}
+
 /* ─── RESPONSIVE ─── */
 @media (min-width: 768px) {
   .hero { padding: 4rem 3rem 4rem; }
@@ -1677,6 +1869,7 @@ body {
       <span>Richard · Rachel · Iona (8)</span>
       <span>~1,200 Miles</span>
     </div>
+    <div class="trip-countdown fade-in delay-3" id="trip-countdown"></div>
   </div>
   <div class="scroll-cue">
     <span>Scroll</span>
@@ -1833,8 +2026,21 @@ body {
     </div>
   </div>
 
+  <div class="journal-card">
+    <div class="journal-meta">
+      <span class="journal-label">Field Journal · Phase 01</span>
+      <span class="journal-note">For Iona's notebook</span>
+    </div>
+    <h3 class="journal-title">First Impressions</h3>
+    <ul class="journal-prompts">
+      <li>What was the first sound you heard outside LAX?</li>
+      <li>One word for the air in California?</li>
+      <li>The strangest American thing you spotted today?</li>
+    </ul>
+  </div>
+
   <div class="days-container">
-    <div class="day-accordion open">
+    <div class="day-accordion open" data-date="2026-07-06">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">6</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -1881,8 +2087,21 @@ body {
     </div>
   </div>
 
+  <div class="journal-card">
+    <div class="journal-meta">
+      <span class="journal-label">Field Journal · Phase 02</span>
+      <span class="journal-note">For Iona's notebook</span>
+    </div>
+    <h3 class="journal-title">The Pacific</h3>
+    <ul class="journal-prompts">
+      <li>How does Californian sand feel different from a British beach?</li>
+      <li>The first thing you smelled at the ocean?</li>
+      <li>Draw what's at the bottom of the El Matador cliffs.</li>
+    </ul>
+  </div>
+
   <div class="days-container">
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-07">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">7</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2049,7 +2268,7 @@ body {
       </div>
     </div>
 
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-08">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">8</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2096,8 +2315,21 @@ body {
     </div>
   </div>
 
+  <div class="journal-card">
+    <div class="journal-meta">
+      <span class="journal-label">Field Journal · Phase 03</span>
+      <span class="journal-note">For Iona's notebook</span>
+    </div>
+    <h3 class="journal-title">Creatures of the Coast</h3>
+    <ul class="journal-prompts">
+      <li>The strangest creature you saw at the aquarium?</li>
+      <li>Did you smell the elephant seals before you saw them?</li>
+      <li>Sketch a sea otter from memory.</li>
+    </ul>
+  </div>
+
   <div class="days-container">
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-09">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">9</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2183,7 +2415,7 @@ body {
       </div>
     </div>
 
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-10">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">10</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2340,8 +2572,21 @@ body {
     </div>
   </div>
 
+  <div class="journal-card">
+    <div class="journal-meta">
+      <span class="journal-label">Field Journal · Phase 04</span>
+      <span class="journal-note">For Iona's notebook</span>
+    </div>
+    <h3 class="journal-title">The Tall Country</h3>
+    <ul class="journal-prompts">
+      <li>Could you put your arms around the trunk of the biggest tree?</li>
+      <li>Draw the shape of Half Dome in three pencil strokes.</li>
+      <li>One sound the meadow makes at dawn?</li>
+    </ul>
+  </div>
+
   <div class="days-container">
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-11">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">11</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2426,7 +2671,7 @@ body {
       </div>
     </div>
 
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-12 2026-07-13">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">12–13</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2576,8 +2821,21 @@ body {
     </div>
   </div>
 
+  <div class="journal-card">
+    <div class="journal-meta">
+      <span class="journal-label">Field Journal · Phase 05</span>
+      <span class="journal-note">For Iona's notebook</span>
+    </div>
+    <h3 class="journal-title">Off the Grid</h3>
+    <ul class="journal-prompts">
+      <li>The name of your horse at Rankin?</li>
+      <li>The brightest thing you saw in the sky from Walker Basin?</li>
+      <li>One thing you only noticed because the phone was away?</li>
+    </ul>
+  </div>
+
   <div class="days-container">
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-14">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">14</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2658,7 +2916,7 @@ body {
       </div>
     </div>
 
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-15">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">15</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2691,7 +2949,7 @@ body {
       </div>
     </div>
 
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-16 2026-07-17">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">16–17</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -2903,8 +3161,21 @@ body {
     </div>
   </div>
 
+  <div class="journal-card">
+    <div class="journal-meta">
+      <span class="journal-label">Field Journal · Phase 06</span>
+      <span class="journal-note">For Iona's notebook</span>
+    </div>
+    <h3 class="journal-title">Wheels Down</h3>
+    <ul class="journal-prompts">
+      <li>The fastest you've ever felt yourself moving?</li>
+      <li>The first Disney character you met by name?</li>
+      <li>What will you miss most about California?</li>
+    </ul>
+  </div>
+
   <div class="days-container">
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-18">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">18</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -3071,7 +3342,7 @@ body {
       </div>
     </div>
 
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-19">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">19</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -3121,7 +3392,7 @@ body {
       </div>
     </div>
 
-    <div class="day-accordion">
+    <div class="day-accordion" data-date="2026-07-20">
       <div class="day-header" onclick="toggleDay(this)">
         <div class="day-date"><div class="day-date-num">20</div><div class="day-date-month">Jul</div></div>
         <div class="day-summary">
@@ -3268,6 +3539,67 @@ body {
   <p class="footer-note">Built for Richard, Rachel & Iona. Summer 2026.</p>
 </footer>
 
+<!-- ═══════════════════════ EXPEDITION STATS ═══════════════════════ -->
+<section class="expedition-stats">
+  <div class="stats-eyebrow">Expedition Log</div>
+  <h2 class="stats-title">By the Numbers</h2>
+  <p class="stats-subtitle">When the dust settles and the boots come off</p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value">~1,200</div>
+      <div class="stat-label">Miles driven</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">14</div>
+      <div class="stat-label">Nights on the road</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">8</div>
+      <div class="stat-label">Different beds</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">2</div>
+      <div class="stat-label">National Parks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">5</div>
+      <div class="stat-label">Wildlife plates</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value"><span id="stats-spotted">0</span> / 15</div>
+      <div class="stat-label">Species spotted</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">1</div>
+      <div class="stat-label">Galaxy observed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">8 hrs</div>
+      <div class="stat-label">Of jet-lag, each way</div>
+    </div>
+  </div>
+
+  <div class="stats-wonder">
+    <div class="wonder-row">
+      <span class="wonder-num">83 m</span>
+      <span class="wonder-text">Tallest tree on the trip — General Sherman, Sequoia NP</span>
+    </div>
+    <div class="wonder-row">
+      <span class="wonder-num">3,600 m</span>
+      <span class="wonder-text">Deepest waters paddled above — Monterey Submarine Canyon</span>
+    </div>
+    <div class="wonder-row">
+      <span class="wonder-num">200 billion</span>
+      <span class="wonder-text">Stars in the galaxy looked at from Walker Basin</span>
+    </div>
+    <div class="wonder-row">
+      <span class="wonder-num">71 yrs</span>
+      <span class="wonder-text">Since Disneyland opened on July 17, 1955</span>
+    </div>
+  </div>
+</section>
+
 <script>
 function toggleDay(header) {
   const accordion = header.parentElement;
@@ -3332,6 +3664,7 @@ function toggleSpotted(event, btn) {
   const list = new Set(getSpotted());
   if (isSpotted) list.add(id); else list.delete(id);
   setSpotted([...list]);
+  if (typeof updateSpottedCount === 'function') updateSpottedCount();
 }
 function restoreSpotted() {
   const list = new Set(getSpotted());
@@ -3348,6 +3681,63 @@ if (document.readyState === 'loading') {
 } else {
   restoreSpotted();
 }
+
+// Trip-aware behaviour: countdown + auto-open today's day
+const TRIP_START_ISO = '2026-07-06';
+const TRIP_END_ISO = '2026-07-20';
+function isoLocal(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+function initTripState() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayIso = isoLocal(today);
+  const tripStart = new Date(TRIP_START_ISO + 'T00:00:00');
+  const tripEnd = new Date(TRIP_END_ISO + 'T23:59:59');
+  const chip = document.getElementById('trip-countdown');
+  if (!chip) return;
+  if (today < tripStart) {
+    const days = Math.round((tripStart - today) / 86400000);
+    chip.textContent = days === 1 ? '1 day to wheels up' : `${days} days to wheels up`;
+    chip.classList.add('visible');
+  } else if (today > tripEnd) {
+    chip.textContent = 'The trip is in the books';
+    chip.classList.add('visible');
+  } else {
+    const todayAccordion = document.querySelector(`.day-accordion[data-date~="${todayIso}"]`);
+    if (todayAccordion) {
+      document.querySelectorAll('.day-accordion.open').forEach(a => a.classList.remove('open'));
+      todayAccordion.classList.add('open');
+      setTimeout(() => {
+        todayAccordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 350);
+    }
+    const monthName = today.toLocaleString('en-GB', { month: 'long' });
+    chip.textContent = `On the road · ${today.getDate()} ${monthName}`;
+    chip.classList.add('visible');
+  }
+}
+
+// Live spotted count on expedition stats
+function updateSpottedCount() {
+  const el = document.getElementById('stats-spotted');
+  if (!el) return;
+  try {
+    const list = JSON.parse(localStorage.getItem('wildlife-spotter-spotted') || '[]');
+    el.textContent = list.length;
+  } catch (e) { el.textContent = '0'; }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => { initTripState(); updateSpottedCount(); });
+} else {
+  initTripState();
+  updateSpottedCount();
+}
+
 </script>
 
 <!-- Lightbox modal -->
